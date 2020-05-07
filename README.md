@@ -3,7 +3,7 @@ Currently, I life in Wodzisław Śląski, but I am curious which city is more be
 
 ## More details:
 1. Platform where the data come from:
-* olx.pl
+* [olx.pl]
 
 2. Scraped Date: 
 * 2020-05-07
