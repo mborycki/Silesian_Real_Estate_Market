@@ -3,7 +3,8 @@ Currently, I life in Wodzisław Śląski, but I am curious which city is more be
 
 ## More details:
 1. Platform where the data come from:
-* [The OLX marketplace is a platform for buying and selling services and goods such as electronics, fashion items, furniture, household goods, cars and bikes](https://www.olx.pl/)
+* The OLX marketplace [link](https://www.olx.pl/)
+It is a platform for buying and selling services and goods such as electronics, fashion items, furniture, household goods, real estates, cars and bikes
 
 2. Scraped Date: 
 * 2020-05-07
