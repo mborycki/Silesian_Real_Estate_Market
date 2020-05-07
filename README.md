@@ -1,5 +1,5 @@
 # Silesian Real Estate Market - Analysis
-Currently, I life in Wodzisław Śląski, but I am courious which city is more beneficial to life, if I will start working in Katowice. 
+Currently, I life in Wodzisław Śląski, but I am curious which city is more beneficial to life, if I will start working in Katowice. 
 
 ## More details:
 1. Scraped Date: 
