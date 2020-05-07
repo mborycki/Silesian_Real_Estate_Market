@@ -11,11 +11,9 @@ def GetWebInsight(soup, class_name):
     else:
         y = 'no data'
     return y
-
 def download_page_insight(web_page, counter):
     url_site = requests.get(web_page)
     soup = BeautifulSoup(url_site.text, 'html.parser')
-
     localisation_name = GetWebInsight(soup, 'offer-user__address')
     price_value = GetWebInsight(soup, 'pricelabel')
     additional_a = ['Cena', 'Miejsce', 'Link']
@@ -40,12 +38,11 @@ olx_table_cols = {'Cena': [], 'Cena za m²': [], 'Czynsz (dodatkowo)': [], 'Fina
                   'Oferta od': [], 'Powierzchnia': [], 'Poziom': [], 'Rodzaj zabudowy': [], 'Rynek': [], 'Umeblowane': [], 'Miasto': []}
 final_olx_table = pd.DataFrame(data=olx_table_cols)
 
-list_of_cities = ['rybnik','chorzow','tychy','myslowice','mikolow','tarnowskie-gory','gliwice','zabrze','ruda-slaska','knurow','swietochlowice','bytom']
+list_of_cities = ['wodzislaw-slaski','zory','rybnik','chorzow','tychy','myslowice','mikolow','tarnowskie-gory','gliwice','zabrze','ruda-slaska','knurow','swietochlowice','bytom','katowice']
 for chosen_city in list_of_cities:    
     print('\n Scraping data from: ' + chosen_city + '\n')
     url = requests.get('https://www.olx.pl/nieruchomosci/mieszkania/' + chosen_city + '/') # get the data
     soup = BeautifulSoup(url.text, 'html.parser') # load data into bs4
-    
     div = soup.find('div', {'class': 'pager rel clr'}) # Checking amount of web pages with the offers for a chosen city 
     pages_list = []
     for a in div.find_all('a'):
@@ -70,7 +67,6 @@ for chosen_city in list_of_cities:
     a = {'data': [], 'info': [], 'lp': []} # Here we run all the url's and check the offers. To not overload the site I put 3 seconds pause for each link
     olx_table = pd.DataFrame(data=a) # Create a DataFrame for collected data
     offer_no = len(web_sites)
-
     for offer in range(0, offer_no):
         clear_output(wait=True)
         print("Processing: {:.0%}".format(((offer + 1) / offer_no)))
@@ -82,11 +78,7 @@ for chosen_city in list_of_cities:
         aa = {'data': value1, 'info': value2, 'lp': offer + 1}
         df = pd.DataFrame(data=aa)
         olx_table = olx_table.append(df)
-
     olx_table = olx_table.pivot(index='lp', columns='data')['info']
     olx_table['Miasto'] = chosen_city
     final_olx_table = final_olx_table.append(olx_table)
-
 final_olx_table.to_csv('OLX_Offers.csv', index=False)
-
-
