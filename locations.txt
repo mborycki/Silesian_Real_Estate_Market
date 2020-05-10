@@ -1,4 +1,4 @@
-city;location
+City;Location
 rybnik;[50.094339, 18.547365]
 chorzow;[50.296975, 18.957579]
 tychy;[50.121622, 19.021373]
