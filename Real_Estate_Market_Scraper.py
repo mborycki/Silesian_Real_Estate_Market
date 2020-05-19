@@ -17,7 +17,7 @@ def download_page_insight(web_page, counter):
     localisation_name = GetWebInsight(soup, 'offer-user__address')
     price_value = GetWebInsight(soup, 'pricelabel')
     additional_a = ['Cena', 'Miejsce', 'Link']
-    additional_b = [price_value, localisation_name, web_sites[0]]  
+    additional_b = [price_value, localisation_name, web_sites[counter]]  
     data_a = []
     data_b = []
                 
@@ -55,7 +55,7 @@ for chosen_city in list_of_cities:
         url = requests.get('https://www.olx.pl/nieruchomosci/mieszkania/' + chosen_city + '/?page=' + str(web_page))
         soup = BeautifulSoup(url.text, 'html.parser')
         div = soup.find('div', { 'class': 'rel listHandler' })
-        time.sleep(4)
+        time.sleep(10)
         for a in div.find_all('a', href=True): # copy every link from the chosen page
             web_sites.append(a['href'])
                 
@@ -72,7 +72,7 @@ for chosen_city in list_of_cities:
         print("Processing: {:.0%}".format(((offer + 1) / offer_no)))
         url_address = web_sites[offer] 
         # web_soup_count = w
-        time.sleep(5)
+        time.sleep(10)
         value1, value2 = download_page_insight(url_address, offer) # run the function from the top of this script
         
         aa = {'data': value1, 'info': value2, 'lp': offer + 1}
@@ -81,4 +81,4 @@ for chosen_city in list_of_cities:
     olx_table = olx_table.pivot(index='lp', columns='data')['info']
     olx_table['Miasto'] = chosen_city
     final_olx_table = final_olx_table.append(olx_table)
-final_olx_table.to_csv('OLX_Offers.csv', index=False)
+final_olx_table.to_csv('OLX_Table.csv', index=False)
